@@ -7,7 +7,6 @@ router = routers.DefaultRouter()
 router.register('rotationapp', views.ImageRotationView)
 
 urlpatterns = [
-    path('form/', views.cxcontaxt, name='rotationform'),
-    path('api/', include(router.urls)),
-    path('status/', views.rotation)
+    path('', views.cxcontaxt, name='rotationform'),
+    #path('api/', include(router.urls)),
 ]

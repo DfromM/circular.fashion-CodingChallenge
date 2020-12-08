@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-from keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
+import keras.utils
+
+from nn.custom_image_augmentation import ClothImageDataGenerator
 
 
 def rotate_image(img, degree):
@@ -63,17 +65,22 @@ def make_model():
 
 model = make_model()
 
-augmentation = ImageDataGenerator(shear_range=0.1,
-                                  zoom_range=0.1,
-                                  rotation_range=15)
+#augmentation = ImageDataGenerator(shear_range=0.1,
+#                                  zoom_range=0.1,
+#                                  rotation_range=15)
+
+augmentation = ClothImageDataGenerator(x_train, y_train, batch_size=75,
+                                       shuffle=True, alter_background=True,
+                                       max_rotation=15, max_shift=0.1,
+                                       max_zoom=0.1, random_noise=False)
 
 model.compile(optimizer='adam', loss='categorical_crossentropy',
               metrics=['accuracy'])
-model.fit_generator(augmentation.flow(x_train, y_train, batch_size=100),
+model.fit_generator(augmentation,
                     validation_data=(x_validation, y_validation),
-                    epochs=3)
+                    epochs=5)
 
-model.save('./models/augmentation_model')
+model.save('./models/custom_augmentation_model')
 # model = keras.models.load_model('./models/basic_model')
 
 print(model.evaluate(test_images_reshaped, test_labels_onehot))
@@ -82,7 +89,7 @@ for i in range(16):
     plt.xticks([])
     plt.yticks([])
     plt.grid(False)
-    plt.imshow(test_images[i], cmap=plt.cm.get_cmap('Greys'))
+    plt.imshow(test_images[i], cmap=plt.cm.get_cmap('Greys_r'))
     plt.xlabel(f"Prediction:"
                f"{class_names[np.argmax(model.predict(test_images[i].reshape(1,28,28,1)))]} "
                f"Label:{class_names[test_labels[i]]}")
