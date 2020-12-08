@@ -24,11 +24,13 @@
             <div class="col"></div>
             <div class="col-6 my-5">
                 <h3 style="color: #39295b">Image Upload</h3>
+                <div>Upload an image of a single clothing item.</div>
+                <div style="margin-bottom: 20px">It will be auto-downloaded with the correct rotation.</div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
                     <button type="submit"
-                            style="margin-top: 25px; color: #F8EFE8; background-color:#39295b">
+                            style="margin-top: 25px; color: #FFFFFF; background-color:#39295b">
                         Submit
                     </button>
                 </form>
@@ -38,14 +40,5 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 </body>
 </html>
