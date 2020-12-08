@@ -10,3 +10,7 @@ The application only needs to run locally - but if you could deploy it that woul
 
 ### Example:
 If my image is 32 x 28 png and is in the incorrect rotation by 90 degrees anti clockwise, your app should return the image to me, rotated 90 degrees clockwise with the dimensions 28 x 32 png.
+
+### Structure
+The code for the Django Web-App can be found in the folder rotationserver. 
+The folder nn holds the code for the training of a neural network.
